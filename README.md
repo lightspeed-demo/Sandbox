@@ -1,2 +1,2 @@
 # Sandbox
-Sandbox repo to test the GitHub Bot features
+Sandbox repo to test the GitHub features
