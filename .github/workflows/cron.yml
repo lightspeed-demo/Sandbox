@@ -14,26 +14,26 @@
 #         run: echo Hello, world!
 
 
-name: Schedule Lightspeed bot Scan
-on:  
-  schedule:
-    - cron: '*/5 * * * *' # Replace with your desired schedule option
-env:
-  WEBHOOK_URL: ${{ secrets.WEBHOOK_URL }}
-  DEFAULT_BRANCH: ${{ github.default_branch }}
+# name: Schedule Lightspeed bot Scan
+# on:  
+#   schedule:
+#     - cron: '*/5 * * * *' # Replace with your desired schedule option
+# env:
+#   WEBHOOK_URL: ${{ secrets.WEBHOOK_URL }}
+#   DEFAULT_BRANCH: ${{ github.default_branch }}
 
-jobs:
-  send-scan-event:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout Code
-        uses: actions/checkout@v2
-      - name: Get Commit Information
-        run: echo "::set-env name=COMMIT_SHA::$(git rev-parse HEAD)"
-      - name: Send Scan Event
-        uses: wei/curl@v1
-        with:
-          args: |
-            -X POST
-            -H "Content-Type: application/json"
+# jobs:
+#   send-scan-event:
+#     runs-on: ubuntu-latest
+#     steps:
+#       - name: Checkout Code
+#         uses: actions/checkout@v2
+#       - name: Get Commit Information
+#         run: echo "::set-env name=COMMIT_SHA::$(git rev-parse HEAD)"
+#       - name: Send Scan Event
+#         uses: wei/curl@v1
+#         with:
+#           args: |
+#             -X POST
+#             -H "Content-Type: application/json"
             -d '{"event_type": "scan", "branch_name": "'${{ env.DEFAULT_BRANCH }}'", "commit_sha": "'${{ env.COMMIT_SHA }}'"}'            ${{ env.WEBHOOK_URL }}
