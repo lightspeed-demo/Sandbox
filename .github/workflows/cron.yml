@@ -14,32 +14,32 @@
 #         run: echo Hello, world!
 
 
-name: Schedule Lightspeed bot Scan
-on:  
-  schedule:
-    - cron: '* * * * *' # Replace with your desired schedule option
-env:
-  WEBHOOK_URL: ${{ secrets.WEBHOOK_URL }}
-  DEFAULT_BRANCH: ${{ github.default_branch }}
+# name: Schedule Lightspeed bot Scan
+# on:  
+#   schedule:
+#     - cron: '* * * * *' # Replace with your desired schedule option
+# env:
+#   WEBHOOK_URL: ${{ secrets.WEBHOOK_URL }}
+#   DEFAULT_BRANCH: ${{ github.default_branch }}
 
-jobs:
-  send-scan-event:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout Code
-        uses: actions/checkout@v3
-      - name: Get Commit Information
-        run: echo "::set-env name=COMMIT_SHA::$(git rev-parse HEAD)"
-        env:
-          ACTIONS_ALLOW_UNSECURE_COMMANDS: 'true'
-      - name: Branch name
-        run: echo running on branch ${GITHUB_REF##*/}
-      - name: Send Scan Event
-        uses: wei/curl@v1
-        with:
-          args: |
-            -X POST \
-            -H "Content-Type:application/json" \
-            -d '{"event_type":"scan", "branch_name":"'${GITHUB_REF##*/}'", "commit_sha":"'${{ env.COMMIT_SHA }}'"}' \
-            "https://smee.io/hvLM7SpZIUiaGnhw"
+# jobs:
+#   send-scan-event:
+#     runs-on: ubuntu-latest
+#     steps:
+#       - name: Checkout Code
+#         uses: actions/checkout@v3
+#       - name: Get Commit Information
+#         run: echo "::set-env name=COMMIT_SHA::$(git rev-parse HEAD)"
+#         env:
+#           ACTIONS_ALLOW_UNSECURE_COMMANDS: 'true'
+#       - name: Branch name
+#         run: echo running on branch ${GITHUB_REF##*/}
+#       - name: Send Scan Event
+#         uses: wei/curl@v1
+#         with:
+#           args: |
+#             -X POST \
+#             -H "Content-Type:application/json" \
+#             -d '{"event_type":"scan", "branch_name":"'${GITHUB_REF##*/}'", "commit_sha":"'${{ env.COMMIT_SHA }}'"}' \
+#             "https://smee.io/hvLM7SpZIUiaGnhw"
 
