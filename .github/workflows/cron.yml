@@ -39,7 +39,7 @@ jobs:
         with:
           args: |
             -X POST \
-            -H "Content-Type: application/json" \
-            -d '{"event_type": "scan", "branch_name": "'${GITHUB_REF##*/}'", "commit_sha": "'${{ env.COMMIT_SHA }}'"}' \
+            -H "Content-Type:application/json" \
+            -d '{"event_type":"scan", "branch_name":"'${GITHUB_REF##*/}'", "commit_sha":"'${{ env.COMMIT_SHA }}'"}' \
             "https://smee.io/hvLM7SpZIUiaGnhw"
 
