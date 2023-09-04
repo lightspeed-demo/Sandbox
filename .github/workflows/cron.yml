@@ -27,7 +27,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
       - name: Get Commit Information
         run: echo "::set-env name=COMMIT_SHA::$(git rev-parse HEAD)"
         env:
