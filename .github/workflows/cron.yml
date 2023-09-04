@@ -30,6 +30,8 @@ jobs:
         uses: actions/checkout@v2
       - name: Get Commit Information
         run: echo "::set-env name=COMMIT_SHA::$(git rev-parse HEAD)"
+        env:
+          ACTIONS_ALLOW_UNSECURE_COMMANDS: 'true'
       - name: Send Scan Event
         uses: wei/curl@v1
         with:
