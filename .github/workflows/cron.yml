@@ -51,7 +51,7 @@ on:
   workflow_dispatch:
     inputs:
       version:
-        description: "Node version (e.g. 1.2.3)"
+        description: "TEST BOT DISPATCH"
         required: true
 
 jobs:
@@ -60,7 +60,7 @@ jobs:
     steps:
       # unify version from different triggers
       # https://docs.github.com/en/actions/reference/workflow-commands-for-github-actions#setting-an-environment-variable
-      - run: echo "NODE_VERSION=${{ github.event.client_payload.integration }" >> $GITHUB_ENV
+      - run: echo "TEST DISPATCH=${{ github.event.client_payload.integration }" >> $GITHUB_ENV
         if: github.event_name == 'repository_dispatch'
-      - run: echo "NODE_VERSION=${{ github.event.inputs.unit }" >> $GITHUB_ENV
+      - run: echo "TEST DISPATCH=${{ github.event.inputs.unit }" >> $GITHUB_ENV
         if: github.event_name == 'workflow_dispatch'
