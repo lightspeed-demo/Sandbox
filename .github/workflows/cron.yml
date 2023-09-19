@@ -42,7 +42,7 @@
 #             -H "Content-Type:application/json" \
 #             -d '{"event_type":"scan", "branch_name":"'${GITHUB_REF##*/}'", "commit_sha":"'${{ env.COMMIT_SHA }}'"}' \
 #             "https://smee.io/hvLM7SpZIUiaGnhw"
-name: TEST DISPATCH EVENT
+name: TEST DISPATCH EVENT FROM BOT
 
 on:
   repository_dispatch:
